@@ -15,32 +15,19 @@
       --border: #334155;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    header {
-      padding: 16px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.8);
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(8px);
-      z-index: 2;
-    }
+    body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    header { padding: 16px; text-align: center; border-bottom: 1px solid var(--border); background: rgba(15, 23, 42, 0.8); position: sticky; top: 0; backdrop-filter: blur(8px); z-index: 2; }
     h1 { margin: 0 0 4px; font-size: 20px; }
     p { margin: 0; color: var(--muted); font-size: 14px; }
-    .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding: 16px; }
+    .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 16px; }
     .column { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 160px; }
-    .col-title { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .col-title { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
     .pill { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
     .pill.todo { background: #f59e0b; }
     .pill.progress { background: #3b82f6; }
-    .pill.done { background: #22c55e; }
+    .pill.review { background: #a855f7; }
+    .pill.testing { background: #22c55e; }
+    .pill.done { background: #16a34a; }
     .pill.blocked { background: #ef4444; }
     .card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
     .card h3 { margin: 0 0 6px; font-size: 15px; }
@@ -59,40 +46,60 @@
     <section class="column">
       <div class="col-title"><span class="pill todo"></span>To Do</div>
       <div class="card">
-        <h3>Telegram bot: group visibility</h3>
-        <p>Bot not seeing Frax group messages; needs privacy off & visibility verification.</p>
+        <h3>Physio: Patient portal + auth placeholder</h3>
+        <p>Add mock patient-facing view and basic gated routes (no external APIs).</p>
       </div>
       <div class="card">
-        <h3>Physio app: patient portal + auth</h3>
-        <p>Add mock patient-facing portal and placeholder auth gate (no external keys yet).</p>
+        <h3>Telegram bot visibility</h3>
+        <p>Bot not seeing Frax group messages; needs privacy off & visibility verification.</p>
       </div>
     </section>
 
     <section class="column">
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
-        <h3>Physiotherapy scheduler (Next.js)</h3>
-        <p>SSR mock built; now adding booking form, intake notes, billing UI (all mock, no API keys).</p>
+        <h3>Physio: Booking + intake + billing UI</h3>
+        <p>Build appointment form (buffers/recurrence), intake notes, and billing mock (no external APIs).</p>
       </div>
       <div class="card">
-        <h3>ipirexeth: RewardRecipientGateway PR</h3>
-        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open, builds/tests green; awaiting review/merge.</p>
+        <h3>Physio: Telehealth stub</h3>
+        <p>Embed placeholder video pane & start-call flow ready for Daily/Twilio later.</p>
+      </div>
+    </section>
+
+    <section class="column">
+      <div class="col-title"><span class="pill review"></span>In Review</div>
+      <div class="card">
+        <h3>ipirexeth: RewardRecipientGateway</h3>
+        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open; builds/tests green; awaiting review/merge.</p>
+      </div>
+    </section>
+
+    <section class="column">
+      <div class="col-title"><span class="pill testing"></span>Testing</div>
+      <div class="card">
+        <h3>Physio: Core SSR scaffold</h3>
+        <p>Landing, dashboard, mock API ready; verifying flows as new features land.</p>
       </div>
     </section>
 
     <section class="column">
       <div class="col-title"><span class="pill done"></span>Done</div>
       <div class="card">
-        <h3>Kanban site</h3>
-        <p>Tasks repo live at <a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">kanban</a>.</p>
+        <h3>Kanban site live</h3>
+        <p><a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">Board</a> hosted; repo renamed to tasks.</p>
       </div>
       <div class="card">
-        <h3>RewardRecipientGateway source sync</h3>
-        <p>On-chain RRG sources + solmate ERC4626 added; forge build/test passing.</p>
+        <h3>Physio: Initial SSR mock</h3>
+        <p>Next.js app scaffolded with mock data; no external keys required.</p>
+      </div>
+      <div class="card">
+        <h3>RewardRecipientGateway sync</h3>
+        <p>On-chain RRG sources + solmate ERC4626; forge build/test passing.</p>
       </div>
       <div class="card">
         <h3>Bonding curve slides</h3>
-        <p>Reveal.js deck with Desmos + Solidity code. <a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>.</p>
+        <p>Reveal.js deck with Desmos + Solidity code (<a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>).</p>
       </div>
     </section>
 
