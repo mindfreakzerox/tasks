@@ -34,52 +34,20 @@
     }
     h1 { margin: 0 0 4px; font-size: 20px; }
     p { margin: 0; color: var(--muted); font-size: 14px; }
-    .board {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 12px;
-      padding: 16px;
-    }
-    .column {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px;
-      min-height: 160px;
-    }
-    .col-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-    }
+    .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding: 16px; }
+    .column { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 160px; }
+    .col-title { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
     .pill { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
     .pill.todo { background: #f59e0b; }
     .pill.progress { background: #3b82f6; }
     .pill.done { background: #22c55e; }
     .pill.blocked { background: #ef4444; }
-    .card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 8px;
-    }
+    .card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
     .card h3 { margin: 0 0 6px; font-size: 15px; }
     .card p { margin: 0; font-size: 13px; color: var(--muted); }
     a { color: #8bdbff; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    footer {
-      padding: 14px 16px 20px;
-      font-size: 13px;
-      color: var(--muted);
-      text-align: center;
-    }
+    footer { padding: 14px 16px 20px; font-size: 13px; color: var(--muted); text-align: center; }
   </style>
 </head>
 <body>
@@ -92,31 +60,42 @@
       <div class="col-title"><span class="pill todo"></span>To Do</div>
       <div class="card">
         <h3>Telegram bot: group visibility</h3>
-        <p>Bot still not seeing Frax group messages; needs privacy off & visibility verification.</p>
+        <p>Bot not seeing Frax group messages; needs privacy off & visibility verification.</p>
+      </div>
+      <div class="card">
+        <h3>Physio app: patient portal + auth</h3>
+        <p>Add mock patient-facing portal and placeholder auth gate (no external keys yet).</p>
       </div>
     </section>
+
     <section class="column">
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
+        <h3>Physiotherapy scheduler (Next.js)</h3>
+        <p>SSR mock built; now adding booking form, intake notes, billing UI (all mock, no API keys).</p>
+      </div>
+      <div class="card">
         <h3>ipirexeth: RewardRecipientGateway PR</h3>
-        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open, builds/tests green; awaits review/merge.</p>
+        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open, builds/tests green; awaiting review/merge.</p>
       </div>
     </section>
+
     <section class="column">
       <div class="col-title"><span class="pill done"></span>Done</div>
       <div class="card">
-        <h3>Bonding curve slides</h3>
-        <p>Reveal.js deck with Desmos demos & Solidity code. Pages live at <a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Weather Hello World</h3>
-        <p>Simple Open-Meteo page with city input. Live at <a href="https://mindfreakzerox.github.io/weather-hello/" target="_blank">weather-hello</a>.</p>
+        <h3>Kanban site</h3>
+        <p>Tasks repo live at <a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">kanban</a>.</p>
       </div>
       <div class="card">
         <h3>RewardRecipientGateway source sync</h3>
-        <p>Added on-chain RRG sources + solmate ERC4626 to ipirexeth; builds/tests pass.</p>
+        <p>On-chain RRG sources + solmate ERC4626 added; forge build/test passing.</p>
+      </div>
+      <div class="card">
+        <h3>Bonding curve slides</h3>
+        <p>Reveal.js deck with Desmos + Solidity code. <a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>.</p>
       </div>
     </section>
+
     <section class="column">
       <div class="col-title"><span class="pill blocked"></span>Blocked</div>
       <div class="card">
@@ -126,7 +105,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-12. Ping me for edits and I’ll refresh the board.
+    Updated: 2026-02-12. Auto-refresh as work lands.
   </footer>
 </body>
 </html>
