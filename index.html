@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Hello</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f172a;
+      --card: rgba(255,255,255,0.08);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(56,189,248,0.12), transparent 25%),
+                  radial-gradient(circle at 90% 10%, rgba(94,234,212,0.12), transparent 25%),
+                  radial-gradient(circle at 50% 80%, rgba(244,114,182,0.12), transparent 30%),
+                  #0b1222;
+      color: var(--text);
+      padding: 24px;
+    }
+    .card {
+      width: min(420px, 100%);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+    p { margin: 0; color: var(--muted); }
+    form {
+      margin-top: 18px;
+      display: flex;
+      gap: 8px;
+    }
+    input {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border 0.15s ease;
+    }
+    input:focus { border-color: var(--accent); }
+    button {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #0b1222;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.1s ease, filter 0.15s ease;
+    }
+    button:active { transform: translateY(1px); }
+    button:hover { filter: brightness(1.05); }
+    .result {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: none;
+    }
+    .result.visible { display: block; }
+    .title-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .temp { font-size: 32px; font-weight: 700; }
+    .meta { color: var(--muted); font-size: 14px; margin-top: 4px; }
+    .error { color: #fca5a5; margin-top: 12px; font-size: 14px; }
+    .small { color: var(--muted); font-size: 13px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Weather Hello</h1>
+    <p>Enter a city to see current conditions (metric units).</p>
+    <form id="form">
+      <input id="city" name="city" placeholder="e.g., Brampton" autocomplete="off" required />
+      <button type="submit">Get weather</button>
+    </form>
+    <div id="result" class="result"></div>
+    <div id="error" class="error" role="alert"></div>
+    <p class="small">Powered by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" style="color: var(--accent); text-decoration: none;">Open-Meteo</a></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('form');
+    const cityInput = document.getElementById('city');
+    const resultEl = document.getElementById('result');
+    const errorEl = document.getElementById('error');
+
+    async function fetchWeather(city) {
+      errorEl.textContent = '';
+      resultEl.classList.remove('visible');
+      resultEl.innerHTML = '';
+
+      try {
+        const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`);
+        if (!geoRes.ok) throw new Error('Geocoding failed');
+        const geo = await geoRes.json();
+        if (!geo.results || !geo.results.length) {
+          throw new Error('City not found. Try a nearby major city.');
+        }
+        const place = geo.results[0];
+        const { latitude, longitude, name, country, timezone } = place;
+
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&timezone=${encodeURIComponent(timezone || 'auto')}`);
+        if (!weatherRes.ok) throw new Error('Weather fetch failed');
+        const data = await weatherRes.json();
+        const w = data.current_weather;
+        if (!w) throw new Error('No weather data available.');
+
+        const direction = degToCompass(w.winddirection);
+        resultEl.innerHTML = `
+          <div class="title-row">
+            <div>
+              <div style="font-weight:600">${name}${country ? ', ' + country : ''}</div>
+              <div class="meta">${data.timezone || 'Local time zone'}</div>
+            </div>
+            <div class="temp">${Math.round(w.temperature * 10) / 10}°C</div>
+          </div>
+          <div class="meta">${describeCode(w.weathercode)} · Wind ${Math.round(w.windspeed)} km/h (${direction})</div>
+          <div class="meta">Observed at ${w.time}</div>
+        `;
+        resultEl.classList.add('visible');
+      } catch (err) {
+        console.error(err);
+        errorEl.textContent = err.message || 'Something went wrong';
+      }
+    }
+
+    function degToCompass(deg) {
+      const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+      const idx = Math.round(deg / 22.5) % 16;
+      return dirs[idx];
+    }
+
+    function describeCode(code) {
+      const map = {
+        0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast',
+        45: 'Fog', 48: 'Depositing rime fog',
+        51: 'Light drizzle', 53: 'Moderate drizzle', 55: 'Dense drizzle',
+        56: 'Light freezing drizzle', 57: 'Dense freezing drizzle',
+        61: 'Slight rain', 63: 'Moderate rain', 65: 'Heavy rain',
+        66: 'Light freezing rain', 67: 'Heavy freezing rain',
+        71: 'Slight snow', 73: 'Moderate snow', 75: 'Heavy snow',
+        77: 'Snow grains',
+        80: 'Light rain showers', 81: 'Moderate rain showers', 82: 'Violent rain showers',
+        85: 'Light snow showers', 86: 'Heavy snow showers',
+        95: 'Thunderstorm', 96: 'Thunderstorm with slight hail', 99: 'Thunderstorm with heavy hail'
+      };
+      return map[code] || 'Unknown conditions';
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const city = cityInput.value.trim();
+      if (!city) return;
+      fetchWeather(city);
+    });
+
+    // Prefill with Brampton for quick demo
+    cityInput.value = 'Brampton';
+    fetchWeather('Brampton');
+  </script>
+</body>
+</html>
