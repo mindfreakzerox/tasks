@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Kanban</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.8);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    h1 { margin: 0 0 4px; font-size: 20px; }
+    p { margin: 0; color: var(--muted); font-size: 14px; }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 16px;
+    }
+    .column {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      min-height: 160px;
+    }
+    .col-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .pill { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .pill.todo { background: #f59e0b; }
+    .pill.progress { background: #3b82f6; }
+    .pill.done { background: #22c55e; }
+    .pill.blocked { background: #ef4444; }
+    .card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+    .card h3 { margin: 0 0 6px; font-size: 15px; }
+    .card p { margin: 0; font-size: 13px; color: var(--muted); }
+    a { color: #8bdbff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer {
+      padding: 14px 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Project Kanban</h1>
+    <p>Mobile-friendly snapshot of current work</p>
+  </header>
+  <main class="board">
+    <section class="column">
+      <div class="col-title"><span class="pill todo"></span>To Do</div>
+      <div class="card">
+        <h3>Telegram bot: group visibility</h3>
+        <p>Bot still not seeing Frax group messages; needs privacy off & visibility verification.</p>
+      </div>
+    </section>
+    <section class="column">
+      <div class="col-title"><span class="pill progress"></span>In Progress</div>
+      <div class="card">
+        <h3>ipirexeth: RewardRecipientGateway PR</h3>
+        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open, builds/tests green; awaits review/merge.</p>
+      </div>
+    </section>
+    <section class="column">
+      <div class="col-title"><span class="pill done"></span>Done</div>
+      <div class="card">
+        <h3>Bonding curve slides</h3>
+        <p>Reveal.js deck with Desmos demos & Solidity code. Pages live at <a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>.</p>
+      </div>
+      <div class="card">
+        <h3>Weather Hello World</h3>
+        <p>Simple Open-Meteo page with city input. Live at <a href="https://mindfreakzerox.github.io/weather-hello/" target="_blank">weather-hello</a>.</p>
+      </div>
+      <div class="card">
+        <h3>RewardRecipientGateway source sync</h3>
+        <p>Added on-chain RRG sources + solmate ERC4626 to ipirexeth; builds/tests pass.</p>
+      </div>
+    </section>
+    <section class="column">
+      <div class="col-title"><span class="pill blocked"></span>Blocked</div>
+      <div class="card">
+        <h3>Forge clone w/ Etherscan key</h3>
+        <p>Needs an Etherscan API key to re-run forge clone locally (current source from Sourcify).</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    Updated: 2026-02-12. Ping me for edits and I’ll refresh the board.
+  </footer>
+</body>
+</html>
