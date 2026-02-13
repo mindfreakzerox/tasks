@@ -46,40 +46,24 @@
     <section class="column">
       <div class="col-title"><span class="pill todo"></span>To Do</div>
       <div class="card">
-        <h3>Physio: Mobile polish</h3>
-        <p>Tighten small-screen layout and add skeleton/loading states.</p>
+        <h3>Physio: UI kit & tokens</h3>
+        <p>Finalize colors/type/spacing/buttons for reuse across dashboards.</p>
       </div>
       <div class="card">
-        <h3>Telegram bot visibility</h3>
-        <p>Bot not seeing Frax group messages; needs privacy off & visibility verification.</p>
+        <h3>Physio: Calendar & booking UX</h3>
+        <p>Day/week/month views, availability, booking/reschedule flows (mock data).</p>
       </div>
     </section>
 
     <section class="column">
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
-        <h3>Physio: Patient portal preview (active)</h3>
-        <p>Portal page + dashboard snapshot; mock unlock, exercises/messages/docs; static-export safe.</p>
+        <h3>Physio: App shell & dashboards</h3>
+        <p>Clinic admin/therapist/patient shells styled like Jane; calendar, booking, patients.</p>
       </div>
       <div class="card">
-        <h3>Physio: Build/export & GH Pages</h3>
-        <p>Portable Node 18.19.1 added; GH Pages workflow switched to Node 18. README link to Pages added. Local build still stalls in webpack; push to upstream blocked pending auth.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Booking flow (active)</h3>
-        <p>Buffer + recurrence preview shipped; refining UX.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Intake & notes</h3>
-        <p>Mock subjective/objective/plan note capture; portal flag.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Billing summary</h3>
-        <p>Static line items/discount/totals; no payments.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Telehealth placeholder</h3>
-        <p>Video placeholder + start/join link buttons (mock only).</p>
+        <h3>Physio: Kanban upkeep</h3>
+        <p>Keep board and README aligned with MVP scope and Jane-clone plan.</p>
       </div>
     </section>
 
@@ -94,53 +78,45 @@
     <section class="column">
       <div class="col-title"><span class="pill testing"></span>Testing</div>
       <div class="card">
-        <h3>Physio: Core SSR scaffold</h3>
-        <p>Landing, dashboard, mock data ready; verifying flows as new features land.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Patient portal UI</h3>
-        <p>Portal page + dashboard snapshot; verifying static export and unlock UX.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Dashboard mocks</h3>
-        <p>Booking form, intake notes, billing summary, telehealth placeholder added to dashboard.</p>
+        <h3>Physio: Static export</h3>
+        <p>Build succeeded via SSH; out/ generated; verifying pages and links.</p>
       </div>
     </section>
 
     <section class="column">
       <div class="col-title"><span class="pill done"></span>Done</div>
       <div class="card">
-        <h3>Kanban site live</h3>
-        <p><a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">Board</a> hosted; repo renamed to tasks.</p>
+        <h3>Physio: Home page sections</h3>
+        <p>Jane-style hero, testimonial, value props, feature highlights, trust strip.</p>
+      </div>
+      <div class="card">
+        <h3>Physio: Features hub & detail pages</h3>
+        <p>Features index plus detail templates for booking, scheduling, docs, telehealth, payments, billing, reporting.</p>
+      </div>
+      <div class="card">
+        <h3>Physio: Project brief updated</h3>
+        <p>README now reflects full MVP scope, tech, phases, and current state.</p>
       </div>
       <div class="card">
         <h3>Physio: Initial SSR mock</h3>
-        <p>Next.js app scaffolded with mock data; no external keys required.</p>
-      </div>
-      <div class="card">
-        <h3>RewardRecipientGateway sync</h3>
-        <p>On-chain RRG sources + solmate ERC4626; forge build/test passing.</p>
-      </div>
-      <div class="card">
-        <h3>Bonding curve slides</h3>
-        <p>Reveal.js deck with Desmos + Solidity code (<a href="https://mindfreakzerox.github.io/bonding-curves-slides/" target="_blank">Slides</a>).</p>
+        <p>Next.js app scaffolded with mock data; static export ready; no external keys needed.</p>
       </div>
     </section>
 
     <section class="column">
       <div class="col-title"><span class="pill blocked"></span>Blocked</div>
       <div class="card">
-        <h3>GH publish (paused)</h3>
-        <p>Need builds/export to succeed before pushing gh-pages (local build currently hanging).</p>
+        <h3>GH Pages publish</h3>
+        <p>Push to origin gh-pages blocked by GitHub auth (403). Needs repo-scoped token.</p>
       </div>
       <div class="card">
-        <h3>Forge clone w/ Etherscan key</h3>
-        <p>Needs an Etherscan API key to re-run forge clone locally (current source from Sourcify).</p>
+        <h3>External integrations</h3>
+        <p>Stripe/SendGrid/Twilio deferred until API keys/credits are provided.</p>
       </div>
     </section>
   </main>
   <footer>
-    Updated: 2026-02-13. Auto-refresh as work lands.
+    Updated: 2026-02-13.
   </footer>
 </body>
 </html>
