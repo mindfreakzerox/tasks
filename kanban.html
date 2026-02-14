@@ -59,7 +59,7 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Latest run (Node 18.19.1 with webpackBuildWorker off + debug/verbose env) still stalls at “Creating an optimized production build”; next up: try Next bump/minify-off + webpack trace to isolate the stall.</p>
+        <p>pnpm exec next build --debug on Node 18.19.1 (cache off, ProgressPlugin on) still hangs at “Creating an optimized production build” with zero webpack progress output. Next: emit webpack trace/stats, try swcMinify:false + Next 15/turbopack branch, or strace to see the blocking syscall.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
@@ -131,7 +131,7 @@
       <div class="col-title"><span class="pill blocked"></span>Blocked</div>
       <div class="card">
         <h3>Physio: Local Next build</h3>
-        <p>Build + lint stall at “Creating an optimized production build” on Next 14.1; need profiling/flags or version bump.</p>
+        <p>next build still stalls at “Creating an optimized production build” even with cache disabled, progress logging, and --debug on Node 18.19.1 (Next 14.2.13). CPU profile captured (profiles/next-build.cpuprofile); need webpack stats/trace or strace to pinpoint the blocking compiler task.</p>
       </div>
       <div class="card">
         <h3>External integrations</h3>
@@ -140,7 +140,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-14 03:30 UTC.
+    Updated: 2026-02-14 21:19 UTC.
   </footer>
 </body>
 </html>
