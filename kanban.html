@@ -59,7 +59,7 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Next build still stalls at “Creating an optimized production build.” CI debug workflow now runs on Node 20 + Next 16 with strace + 12m timeout and uploads logs/trace artifacts for inspection; awaiting next run to pinpoint the blocked compiler task.</p>
+        <p>Next build still stalls at “Creating an optimized production build.” Added env-driven SWC minify toggle + webpack progress logging; debug GH Action now forces progress on, cache off, minify off, and runs `next build --debug` under strace to capture where it hangs. Awaiting the next run to pinpoint the blocked compiler task.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
@@ -140,7 +140,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-15 05:18 UTC.
+    Updated: 2026-02-15 07:18 UTC.
   </footer>
 </body>
 </html>
