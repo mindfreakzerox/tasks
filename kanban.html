@@ -59,7 +59,7 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Next build still stalls at “Creating an optimized production build” (Node 18.19.1, cache off, ProgressPlugin). Captured full strace at /tmp/next.strace to inspect where webpack hangs; next up: parse trace and try swcMinify:false / Next 15 or turbopack branch if needed.</p>
+        <p>Next build still stalls at “Creating an optimized production build.” CI debug workflow now runs on Node 20 + Next 16 with strace + 12m timeout and uploads logs/trace artifacts for inspection; awaiting next run to pinpoint the blocked compiler task.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
@@ -140,7 +140,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-15 04:12 UTC.
+    Updated: 2026-02-15 05:18 UTC.
   </footer>
 </body>
 </html>
