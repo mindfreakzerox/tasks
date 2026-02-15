@@ -55,11 +55,11 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Aligned all CI workflows (debug + deploy) to Node 20 with pnpm and progress/strace logging. Still chasing the “Creating an optimized production build” stall; waiting on the next push-triggered run to pull artifacts and isolate the stuck compiler task.</p>
+        <p>Debug/deploy CI on Node 20 + Next 16 now force-publishes build-debug logs/strace to the <code>debug/build-logs</code> branch each run (compressed) so we can pull them without Actions UI access. Awaiting the next run to inspect the failure and unblock the build.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
-        <p>Keep board/README aligned with MVP scope, PhysioFlow brand, and current blockers.</p>
+        <p>Keep board/README aligned with MVP scope, PhysioFlow brand, and current blockers. Base path/prefix updated to /physioflow-fe for gh-pages after the repo rename; need to watch the next export run.</p>
       </div>
     </section>
 
@@ -131,7 +131,7 @@
       <div class="col-title"><span class="pill blocked"></span>Blocked</div>
       <div class="card">
         <h3>Physio: Next build hang</h3>
-        <p>next build continues to stall at “Creating an optimized production build” on Node 20 / Next 16 even with cache disabled, progress logging, and strace capture. CPU profile + strace recorded locally; waiting on CI artifacts to pinpoint the blocking compiler task.</p>
+        <p>Still blocked on diagnosing the CI failure; next debug-build run will push logs/strace to the <code>debug/build-logs</code> branch so we can finally inspect them. Run the workflow (or push) to populate that branch.</p>
       </div>
       <div class="card">
         <h3>External integrations</h3>
@@ -140,7 +140,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-15 14:55 UTC.
+    Updated: 2026-02-15 18:52 UTC.
   </footer>
 </body>
 </html>
