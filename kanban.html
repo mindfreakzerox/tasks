@@ -59,7 +59,7 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Next build still stalls at “Creating an optimized production build.” Added env-driven SWC minify toggle + webpack progress logging; debug GH Action now forces progress on, cache off, minify off, and runs `next build --debug` under strace to capture where it hangs. Awaiting the next run to pinpoint the blocked compiler task.</p>
+        <p>Aligned all CI workflows (debug + deploy) to Node 20 with pnpm and progress/strace logging. Still chasing the “Creating an optimized production build” stall; waiting on the next push-triggered run to pull artifacts and isolate the stuck compiler task.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
@@ -130,8 +130,8 @@
     <section class="column">
       <div class="col-title"><span class="pill blocked"></span>Blocked</div>
       <div class="card">
-        <h3>Physio: Local Next build</h3>
-        <p>next build still stalls at “Creating an optimized production build” even with cache disabled, progress logging, and --debug on Node 18.19.1 (Next 14.2.13). CPU profile captured (profiles/next-build.cpuprofile); need webpack stats/trace or strace to pinpoint the blocking compiler task.</p>
+        <h3>Physio: Next build hang</h3>
+        <p>next build continues to stall at “Creating an optimized production build” on Node 20 / Next 16 even with cache disabled, progress logging, and strace capture. CPU profile + strace recorded locally; waiting on CI artifacts to pinpoint the blocking compiler task.</p>
       </div>
       <div class="card">
         <h3>External integrations</h3>
@@ -140,7 +140,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-15 07:18 UTC.
+    Updated: 2026-02-15 09:25 UTC.
   </footer>
 </body>
 </html>
