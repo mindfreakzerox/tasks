@@ -55,7 +55,11 @@
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
         <h3>Physio: Build stabilization</h3>
-        <p>Debug/deploy CI on Node 20 + Next 16 now force-publishes build-debug logs/strace to the <code>debug/build-logs</code> branch each run (compressed) so we can pull them without Actions UI access. Awaiting the next run to inspect the failure and unblock the build.</p>
+        <p>GH Actions debug job now publishes compressed build logs/strace to the <code>debug/build-logs</code> branch on every run (Node 20, Next 16, minify off). Waiting on the next pipeline to pull logs and clear the production build stall.</p>
+      </div>
+      <div class="card">
+        <h3>AlphaSkills: LearnPress course build</h3>
+        <p>WordPress stack coming online (Apache/PHP/MariaDB) with application password for user dhruvin to enable REST-driven LearnPress setup; continue course build once the instance is ready.</p>
       </div>
       <div class="card">
         <h3>Physio: Kanban upkeep</h3>
@@ -140,7 +144,7 @@
     </section>
   </main>
   <footer>
-    Updated: 2026-02-15 18:52 UTC.
+    Updated: 2026-02-16 22:25 UTC.
   </footer>
 </body>
 </html>
