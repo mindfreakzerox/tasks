@@ -18,20 +18,24 @@
     body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
     header { padding: 16px; text-align: center; border-bottom: 1px solid var(--border); background: rgba(15, 23, 42, 0.8); position: sticky; top: 0; backdrop-filter: blur(8px); z-index: 2; }
     h1 { margin: 0 0 4px; font-size: 20px; }
-    p { margin: 0; color: var(--muted); font-size: 14px; }
-    .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 16px; }
+    header > p { margin: 0; color: var(--muted); font-size: 14px; }
+    .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; padding: 16px; }
     .column { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; min-height: 160px; }
     .col-title { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
     .pill { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
     .pill.todo { background: #f59e0b; }
     .pill.progress { background: #3b82f6; }
-    .pill.review { background: #a855f7; }
-    .pill.testing { background: #22c55e; }
     .pill.done { background: #16a34a; }
-    .pill.blocked { background: #ef4444; }
     .card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
     .card h3 { margin: 0 0 6px; font-size: 15px; }
     .card p { margin: 0; font-size: 13px; color: var(--muted); }
+    .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-top: 6px; font-weight: 600; }
+    .tag.physio { background: #1e3a5f; color: #60a5fa; }
+    .tag.viz { background: #3b1f4b; color: #c084fc; }
+    .tag.bridge { background: #1a3329; color: #4ade80; }
+    .tag.alpha { background: #3b2f1a; color: #fbbf24; }
+    .tag.trading { background: #2d1f1f; color: #f87171; }
+    .tag.infra { background: #1f2d2d; color: #5eead4; }
     a { color: #8bdbff; text-decoration: none; }
     a:hover { text-decoration: underline; }
     footer { padding: 14px 16px 20px; font-size: 13px; color: var(--muted); text-align: center; }
@@ -39,116 +43,144 @@
 </head>
 <body>
   <header>
-    <h1>Project Kanban</h1>
-    <p>Mobile-friendly snapshot of current work</p>
+    <h1>🦊 Project Kanban</h1>
+    <p>Live task board — auto-synced by chotu</p>
   </header>
   <main class="board">
+
+    <!-- BACKLOG -->
     <section class="column">
-      <div class="col-title"><span class="pill todo"></span>To Do</div>
+      <div class="col-title"><span class="pill todo"></span>Backlog</div>
       <div class="card">
-        <h3>Physio: UI kit tokens</h3>
-        <p>Finalize spacing/typography tokens and card/button states; keep portal + dashboard aligned.</p>
+        <h3>PhysioFlow Track B</h3>
+        <p>Calendar UI + sidebar + appointment modals</p>
+        <span class="tag physio">PhysioFlow</span>
       </div>
       <div class="card">
-        <h3>Runner: editor resize + tests fix</h3>
-        <p>Simple Storage only; add resizable editor and ensure Run Tests passes (install Foundry if needed). Current tunnel: https://silly-gifts-rest.loca.lt.</p>
+        <h3>PhysioFlow Track C</h3>
+        <p>Online booking flow (patient-facing) + Stripe integration</p>
+        <span class="tag physio">PhysioFlow</span>
+      </div>
+      <div class="card">
+        <h3>PhysioFlow Track D</h3>
+        <p>Intake forms + email reminders (BullMQ)</p>
+        <span class="tag physio">PhysioFlow</span>
+      </div>
+      <div class="card">
+        <h3>Activity Viz Phase 2</h3>
+        <p>Dynamic floor — NPC lifecycle, desk assignment, task cards, cron stations</p>
+        <span class="tag viz">Activity Viz</span>
+      </div>
+      <div class="card">
+        <h3>Activity Viz Phase 3</h3>
+        <p>Polish — pixel sprites, sound effects, proximity panels</p>
+        <span class="tag viz">Activity Viz</span>
+      </div>
+      <div class="card">
+        <h3>Bridge Simulator Phase 1</h3>
+        <p>Hyperlane adapter + auto-detect engine + adapter registry</p>
+        <span class="tag bridge">Bridge Sim</span>
+      </div>
+      <div class="card">
+        <h3>Assignments W8-W12</h3>
+        <p>4 remaining Builder IDE assignments: upgradeable-game-economy, erc4626-vault, evm-puzzles, batch-aa-wallet</p>
+        <span class="tag alpha">AlphaSkills</span>
+      </div>
+      <div class="card">
+        <h3>AlphaSkills Quizzes</h3>
+        <p>Create quizzes for all 16 weeks</p>
+        <span class="tag alpha">AlphaSkills</span>
+      </div>
+      <div class="card">
+        <h3>Week 2 Cleanup</h3>
+        <p>Duplicate lesson files (9 → 6)</p>
+        <span class="tag alpha">AlphaSkills</span>
+      </div>
+      <div class="card">
+        <h3>P2 UI Proposals</h3>
+        <p>Onboarding, mobile responsive, theme toggle for Runner</p>
+        <span class="tag alpha">AlphaSkills</span>
+      </div>
+      <div class="card">
+        <h3>Trading Bot Monitoring</h3>
+        <p>Grid+DCA live — observe performance first few days</p>
+        <span class="tag trading">Trading</span>
+      </div>
+      <div class="card">
+        <h3>SSH Key Auth</h3>
+        <p>Set up key-based SSH before hardening</p>
+        <span class="tag infra">Infra</span>
       </div>
     </section>
 
+    <!-- IN PROGRESS -->
     <section class="column">
       <div class="col-title"><span class="pill progress"></span>In Progress</div>
       <div class="card">
-        <h3>Physio: Build stabilization</h3>
-        <p>GH Actions debug job now publishes compressed build logs/strace to the <code>debug/build-logs</code> branch on every run (Node 20, Next 16, minify off). Waiting on the next pipeline to pull logs and clear the production build stall.</p>
+        <h3>Activity Viz Phase 1</h3>
+        <p>Vite migration + gateway WebSocket wiring + Zustand store + responsive + Tailscale hosting. Agent running (gpt-5.1-codex).</p>
+        <span class="tag viz">Activity Viz</span>
       </div>
       <div class="card">
-        <h3>AlphaSkills: LearnPress course build</h3>
-        <p>WordPress stack coming online (Apache/PHP/MariaDB) with application password for user dhruvin to enable REST-driven LearnPress setup; continue course build once the instance is ready.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Kanban upkeep</h3>
-        <p>Keep board/README aligned with MVP scope, PhysioFlow brand, and current blockers. Base path/prefix updated to /physioflow-fe for gh-pages after the repo rename; need to watch the next export run.</p>
+        <h3>PhysioFlow Track A</h3>
+        <p>DB schema (Prisma) + migration + Express CRUD routes + seed data. Agent running (gpt-5.1-codex).</p>
+        <span class="tag physio">PhysioFlow</span>
       </div>
     </section>
 
-    <section class="column">
-      <div class="col-title"><span class="pill review"></span>In Review</div>
-      <div class="card">
-        <h3>ipirexeth: RewardRecipientGateway</h3>
-        <p>PR <a href="https://github.com/0xmindfreak/ipirexeth/pull/1" target="_blank">#1</a> open; builds/tests green; awaiting review/merge.</p>
-      </div>
-    </section>
-
-    <section class="column">
-      <div class="col-title"><span class="pill testing"></span>Testing</div>
-      <div class="card">
-        <h3>Physio: Calendar & booking UX</h3>
-        <p>Day/week/month toggles live with reschedule/telehealth queue; verify responsive layout.</p>
-      </div>
-    </section>
-
+    <!-- DONE -->
     <section class="column">
       <div class="col-title"><span class="pill done"></span>Done</div>
       <div class="card">
-        <h3>Physio: Postgres baseline</h3>
-        <p>Prisma datasource moved to Postgres with docker-compose + README/setup scripts for seed/reset.</p>
+        <h3>Bridge Simulator Plan</h3>
+        <p>Rebuild plan + Tenderly gap analysis + context file</p>
+        <span class="tag bridge">Bridge Sim</span>
       </div>
       <div class="card">
-        <h3>Physio: Dashboard microcopy & empty states</h3>
-        <p>Dashboard CTA now matches /pricing and /contact, with reusable empty-state copy on schedule/patient/task cards for demos.</p>
+        <h3>PhysioFlow Plan</h3>
+        <p>Jane.app feature parity rebuild plan — 50 features, 4-phase build</p>
+        <span class="tag physio">PhysioFlow</span>
       </div>
       <div class="card">
-        <h3>Physio: Pricing & contact pages</h3>
-        <p>New /pricing and /contact stubs with tier cards, mock forms, and export-safe CTAs.</p>
+        <h3>Activity Viz Plan</h3>
+        <p>Gather.town-inspired rebuild plan — Vite+React, Zustand, gateway WS</p>
+        <span class="tag viz">Activity Viz</span>
       </div>
       <div class="card">
-        <h3>Physio: Portal polish</h3>
-        <p>Added billing/forms blocks, quick actions, and clearer CTA back to dashboard in portal preview.</p>
+        <h3>AlphaSkills Bootcamp</h3>
+        <p>85 lessons (16 weeks, 1.5MB) + 22 Builder IDE assignments (253 files). Runner serving all assignments.</p>
+        <span class="tag alpha">AlphaSkills</span>
       </div>
       <div class="card">
-        <h3>Physio: Site nav & CTA refresh</h3>
-        <p>Sticky nav links to dashboard/features/pricing/contact/portal plus CTA buttons updated.</p>
+        <h3>Runner UI Overhaul</h3>
+        <p>P0+P1 improvements — search, progress, CodeMirror 6, parsed test results</p>
+        <span class="tag alpha">AlphaSkills</span>
       </div>
       <div class="card">
-        <h3>Physio: Home page sections</h3>
-        <p>Hero, testimonial, value props, feature highlights, and trust strip branded for PhysioFlow.</p>
+        <h3>AlphaSkills IDE Rebrand</h3>
+        <p>ChainShot → AlphaSkills branding. Repos private.</p>
+        <span class="tag alpha">AlphaSkills</span>
       </div>
       <div class="card">
-        <h3>Physio: Features hub & detail pages</h3>
-        <p>Features index plus detail templates for booking, scheduling, docs, telehealth, payments, billing, reporting.</p>
+        <h3>Grid+DCA Trading Bot</h3>
+        <p>Hybrid strategy with ADX regime detection. Backtested 48h + 30d. Live on systemd timer.</p>
+        <span class="tag trading">Trading</span>
       </div>
       <div class="card">
-        <h3>Physio: GH Pages live</h3>
-        <p>Static export pushed to gh-pages via SSH — https://mindfreakzerox.github.io/physiotherapy-scheduler/</p>
+        <h3>Backtest Visualization</h3>
+        <p>Interactive charts with equity curves, trade markers, 48h/30d toggle</p>
+        <span class="tag trading">Trading</span>
       </div>
       <div class="card">
-        <h3>Physio: Project brief updated</h3>
-        <p>README now reflects MVP scope, tech, phases, and current state.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Initial SSR mock</h3>
-        <p>Next.js app scaffolded with mock data; static export ready; no external keys needed.</p>
-      </div>
-      <div class="card">
-        <h3>Physio: Calendar snapshot & availability</h3>
-        <p>New calendar ribbon, weekly availability, booking signals on dashboard.</p>
+        <h3>Security Hardening</h3>
+        <p>UFW firewall (deny-by-default), weekly security audit cron, exec policy</p>
+        <span class="tag infra">Infra</span>
       </div>
     </section>
 
-    <section class="column">
-      <div class="col-title"><span class="pill blocked"></span>Blocked</div>
-      <div class="card">
-        <h3>Physio: Next build hang</h3>
-        <p>Still blocked on diagnosing the CI failure; next debug-build run will push logs/strace to the <code>debug/build-logs</code> branch so we can finally inspect them. Run the workflow (or push) to populate that branch.</p>
-      </div>
-      <div class="card">
-        <h3>External integrations</h3>
-        <p>Stripe/SendGrid/Twilio deferred until API keys/credits are provided.</p>
-      </div>
-    </section>
   </main>
   <footer>
-    Updated: 2026-02-18 01:30 UTC · Site: <a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">kanban</a> · Repo: <a href="https://github.com/mindfreakzerox/tasks" target="_blank">github.com/mindfreakzerox/tasks</a>
+    Updated: 2026-03-03 00:30 UTC · Site: <a href="https://mindfreakzerox.github.io/tasks/kanban.html" target="_blank">kanban</a> · Repo: <a href="https://github.com/mindfreakzerox/tasks" target="_blank">github.com/mindfreakzerox/tasks</a>
   </footer>
 </body>
 </html>
